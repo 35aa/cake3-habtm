@@ -26,4 +26,14 @@ class CountriesTable extends Table {
 		return $entity;
 	}
 
+	public function updateCountry($country, $data) {
+		$entity = $this->patchEntity($country, $data);
+		if (isset($data['languages'])) {
+			$entity->languages = $this->Languages->find()->where(['id IN' => $data['languages']])->all()->toArray();
+		} else {
+			$entity->errors('languages[]', [__('Please select at least one language')]);
+		}
+		return $this->save($entity);
+	}
+
 }

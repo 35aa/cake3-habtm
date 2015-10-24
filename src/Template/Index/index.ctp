@@ -21,7 +21,13 @@ foreach ($country->languages as $language) {
 	$languages[] = $language->name;
 }
 ?>
-&nbsp;(<?php echo implode(', ', $languages);?>)
+&nbsp;(<?php echo implode(', ', $languages);?>)&nbsp;
+<?php
+echo $this->Html->link(
+	__('Edit'),
+	['controller' => 'countries', 'action' => 'edit', $country->id]
+);
+?>
 	</li>
 <?php } ?>
 </ul>
